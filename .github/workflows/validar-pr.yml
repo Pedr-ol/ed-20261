@@ -19,14 +19,15 @@ jobs:
 
       - name: Validar arquivos de código por pasta
         run: |
+          # Busca as pastas de práticas
           FOLDERS=$(find ./praticas -mindepth 1 -maxdepth 1 -type d)
 
           for folder in $FOLDERS; do
             echo "Validando arquivos na pasta $folder..."
             
+            # Se houver arquivos .h, compila tudo junto
             if ls "$folder"/*.h >/dev/null 2>&1; then
               echo "Compilando todos os arquivos .c na pasta $folder..."
-
               gcc "$folder"/*.c -o "$folder/a.out" -lm
               
               if [ $? -eq 0 ]; then
@@ -36,9 +37,9 @@ jobs:
                 exit 1
               fi
             else
-              FILES=$(find "$folder" -name "*.c" -print0)
-
-              for file in $FILES; do
+              # CORREÇÃO AQUI: Usa find sem -print0 para o loop for funcionar corretamente
+              # e evita o erro de nomes grudados
+              find "$folder" -name "*.c" | while read -r file; do
                 echo "Compilando $file..."
                 gcc "$file" -o "${file%.c}.out" -lm
                 
