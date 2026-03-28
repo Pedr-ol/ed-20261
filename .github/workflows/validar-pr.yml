@@ -19,9 +19,7 @@ jobs:
 
       - name: Validar arquivos de código por pasta
         run: |
-          FOLDERS=$(find ./praticas -mindepth 1 -maxdepth 1 -type d)
-
-          for folder in $FOLDERS; do
+          find ./praticas -mindepth 1 -maxdepth 1 -type d | while read folder; do
             echo "Validando arquivos na pasta $folder..."
             
             if ls "$folder"/*.h >/dev/null 2>&1; then
