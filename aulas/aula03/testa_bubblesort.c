@@ -4,6 +4,7 @@
 #include "ordenacao.h"
 #define TAMANHO 10
 
+
 int main (){
     int vetor[TAMANHO];
     for(int i=0; i < TAMANHO; i++){

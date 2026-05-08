@@ -17,6 +17,7 @@ int main (){
     quick_sort(vetor, 0, TAMANHO-1);
     clock_t termino = clock();
 
+    
     float duracao = (float)(termino - inicio)/CLOCKS_PER_SEC;
 
     printf("Vetor depois de ordenar em %fs\n", duracao);
