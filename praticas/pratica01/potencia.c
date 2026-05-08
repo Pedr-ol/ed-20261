@@ -2,39 +2,41 @@
 
 int calc_potencia(int base, int expoente)
 {
-    if (base <= 0 || expoente <= 0)
+    if (expoente < 0)
     {
-        return 0;
+        printf("ERRO, o expoente não pode ser menor que 0!");
+        return -1; // erro
     }
-   
-    else 
-        {
-            int potencia = 1;
-            for (int i = 0; i < expoente; i++)
 
-            {
-                potencia = potencia * base;
+    int potencia = 1;
 
-            }
-            return 1;
-        }
+    for (int i = 0; i < expoente; i++)
+    {
+        potencia *= base;
+    }
+
+    return potencia;
 }
 
 int main()
 {
-    
     int resultado;
 
+    printf("=================\nTeste 1:\n");
     resultado = calc_potencia(2, 5);
-    printf("Teste 1: base=2 expoente=5, resultado=%d\n", resultado);
+    printf("Resultado(2^5): %d\n", resultado);
 
+    printf("=================\nTeste 2:\n");
     resultado = calc_potencia(1, 0);
-    printf("Teste 2: base=1 expoente=0, resultado=%d\n", resultado);
+    printf("Resultado(1^0): %d\n", resultado);
 
+    printf("=================\nTeste 3:\n");
     resultado = calc_potencia(3, 2);
-    printf("Teste 3: base=3 expoente=2, resultado=%d\n", resultado);
+    printf("Resultado(3^2): %d\n", resultado);
 
+    printf("=================\nTeste 4:\n");
     resultado = calc_potencia(-1, -5);
-    printf("Teste 4: base=(-1) expoente=(-5), resultado=%d\n", resultado);
+    printf("Resultado(-1^-5): %d\n", resultado);
+
     return 0;
 }
