@@ -1,10 +1,10 @@
 #ifndef LISTA_ENCADEADA_H
 #define LISTA_ENCADEADA_H
 
-typedef struct
+typedef struct No
 {
     int dado;
-    No *proximo;
+    struct No *proximo;
 } No;
 
 typedef struct
