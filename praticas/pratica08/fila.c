@@ -27,16 +27,15 @@ int fila_vazia(Fila fila) {
     return(fila == NULL || fila->inicio == NULL);
 }
 
-int fila_enfileirar(Fila fila, int *valor) {
+int fila_enfileirar(Fila fila, int *valor) { // Mantendo o int* que você colocou no .h
     if(fila == NULL) {return 0;}
 
     no_t *novo = malloc(sizeof(no_t));
-
     if(novo == NULL){
         return 0;
     }
 
-    novo->valor = valor;
+    novo->valor = *valor; // <--- CORREÇÃO: Adicionado o '*' para pegar o valor de fato, e não o endereço de memória
     novo->proximo = NULL;
 
     if(fila_vazia(fila)){
@@ -48,7 +47,6 @@ int fila_enfileirar(Fila fila, int *valor) {
     }
 
     return 1;
-
 }
 
 int fila_desenfileirar(Fila fila, int *valor){
@@ -103,7 +101,7 @@ void fila_destruir(Fila fila) {
    no_t *atual = fila->inicio;
 
    while(atual != NULL) {
-    not_t *proximo_no = atual->proximo;
+    no_t *proximo_no = atual->proximo;
     free(atual);
     atual = proximo_no;
    }
